@@ -20,6 +20,7 @@ export default async function (fastify: FastifyInstance) {
     method: "GET",
     url: "/content/:bucketName/:filePath",
     schema: {
+      tags: ["Storage"],
       params: FileContentParamsSchema,
       querystring: FileContentQuerySchema,
     },

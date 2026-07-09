@@ -1,14 +1,11 @@
 import type { FastifyInstance } from "fastify";
 import type { FastifyZodOpenApiTypeProvider } from "fastify-zod-openapi";
 import z from "zod";
-import { UserBasicResponseDtoSchema } from "../../services/user/dto/user-response.dto";
-import { UsernameCheckDtoSchema } from "../../services/user/dto/username-check.dto";
 import { ErrorResponseDtoSchema } from "../errors/error-dto";
-import {
-  ImageExtensionMime,
-  parseFormFileToBuffer,
-} from "../../modules/upload-handler";
-import { createProfileImageId } from "../../modules/blob-id";
+import { UserBasicResponseDtoSchema } from "../../service/user/dto/user-response.dto";
+import { UsernameCheckDtoSchema } from "../../service/user/dto/username-check.dto";
+import { ImageExtensionMime, parseFormFileToBuffer } from "../../service/upload-handler";
+import { createProfileImageId } from "../../schemas/blob-id";
 
 export default async function(fastify: FastifyInstance) {
   const server = fastify.withTypeProvider<FastifyZodOpenApiTypeProvider>();
@@ -37,6 +34,13 @@ export default async function(fastify: FastifyInstance) {
   server.route({
     method: "POST",
     url: "/users/me/update-profile",
+    schema: {
+      tags: ["Users"],
+      security: [{ bearerAuth: [] }],
+      response: {
+        200: z.string()
+      }
+    },
     handler: async (request, reply) => {
       const uploadedFile = await parseFormFileToBuffer(request, {
         allowedExtensions: [

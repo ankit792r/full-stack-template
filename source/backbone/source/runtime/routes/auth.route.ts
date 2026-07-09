@@ -33,7 +33,7 @@ export default async function (fastify: FastifyInstance) {
     method: "POST",
     url: "/auth/login",
     schema: {
-      tags: ["Authentication"],
+      tags: ["Auth"],
       summary: "Login user",
       body: LoginDtoSchema,
       response: {
@@ -65,7 +65,7 @@ export default async function (fastify: FastifyInstance) {
     method: "POST",
     url: "/auth/register",
     schema: {
-      tags: ["Authentication"],
+      tags: ["Auth"],
       summary: "Register user",
       body: RegisterDtoSchema,
       response: {
@@ -98,7 +98,7 @@ export default async function (fastify: FastifyInstance) {
     method: "POST",
     url: "/auth/refresh-token",
     schema: {
-      tags: ["Authentication"],
+      tags: ["Auth"],
       summary: "Request fresh access token",
       response: {
         200: AuthResponseDtoSchema,
@@ -130,7 +130,7 @@ export default async function (fastify: FastifyInstance) {
     method: "POST",
     url: "/auth/logout",
     schema: {
-      tags: ["Authentication"],
+      tags: ["Auth"],
       summary: "Logout user",
       response: {
         204: z.null(),
