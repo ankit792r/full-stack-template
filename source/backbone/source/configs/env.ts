@@ -33,7 +33,7 @@ export const env = createEnv({
       .transform((val) => val.split(","))
       .default(["http://localhost:3000"]),
 
-    MONGODB_URI: z.string().default("mongodb://localhost:27017"),
+    MONGODB_URI: z.string().default("mongodb://root:root@localhost:27017"),
     DB_NAME: z.string().default("testdb"),
 
     DEFAULT_CACHE_IMPL: z.enum(["redis", "memory"]).default("memory"),
