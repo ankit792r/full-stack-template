@@ -15,6 +15,7 @@
 
 import type { AuthErrorCode } from "../../service/auth/auth.error";
 import type { UserErrorCodes } from "../../service/user/user.error";
+import type { StudentErrorCodes } from "../../service/student/student.error";
 import type { CommonErrorCode } from "./common.error";
 import type { UploadErrorCode } from "./upload-error";
 
@@ -28,5 +29,6 @@ import type { UploadErrorCode } from "./upload-error";
 export type AppErrorCode =
   | CommonErrorCode
   | UserErrorCodes
+  | StudentErrorCodes
   | AuthErrorCode
   | UploadErrorCode;
