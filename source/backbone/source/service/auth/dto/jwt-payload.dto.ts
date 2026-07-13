@@ -3,7 +3,7 @@ import {
   createIdFactoryFromIdSchema,
   idSchema,
 } from "../../../schemas/id-factory";
-import { UserIdSchema } from "../../../schemas/user.schema";
+import { UserIdSchema } from "../../../schemas/user/user.schema";
 
 type JwtClaimsAddedBySigning = "iat" | "jti" | "exp" | "typ";
 

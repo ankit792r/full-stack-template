@@ -6,14 +6,20 @@ import { errorHandler, notFoundHandler } from "./errors/handlers";
 import type { RedisClientType } from "redis";
 import type { Collection, MongoClient } from "mongodb";
 import type { ICache } from "../modules/cache/cache-interface";
-import type { User } from "../schemas/user.schema";
 import type { UserService } from "../service/user/user.service";
 import type { AuthService } from "../service/auth/auth.service";
+import type { Client } from "pg";
+import type { User } from "../schemas/user/user.schema";
+import type { UserRepositoryInterface } from "../schemas/user/user.interface";
 
 export type DependencyOverrides = {
   mongoClient?: MongoClient;
+  postgresClient?: Client;
+
   redisClient?: RedisClientType;
   defaultCache?: ICache;
+
+  userRepository?: UserRepositoryInterface;
 
   userCollection?: Collection<User>;
   userService?: UserService;

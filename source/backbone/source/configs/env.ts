@@ -33,8 +33,9 @@ export const env = createEnv({
       .transform((val) => val.split(","))
       .default(["http://localhost:3000"]),
 
-    MONGODB_URI: z.string().default("mongodb://root:root@localhost:27017"),
-    DB_NAME: z.string().default("testdb"),
+    DEFAULT_DB: z.enum(["mongodb", "postgres"]).default("postgres"),
+    MONGODB_URI: z.string().default("mongodb://root:root@localhost:27017/testdb"),
+    POSTGRES_URI: z.string().default("postgres://root:root@localhost:5432/testdb"),
 
     DEFAULT_CACHE_IMPL: z.enum(["redis", "memory"]).default("memory"),
     REDIS_URL: z.string().default("redis://localhost:6379"),

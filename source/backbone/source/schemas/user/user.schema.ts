@@ -1,6 +1,6 @@
 import z from "zod";
-import { createIdFactoryFromIdSchema, idSchema } from "./id-factory";
-import type { CollectionConfig } from "../modules/mongo/collection";
+import { createIdFactoryFromIdSchema, idSchema } from "../id-factory";
+import type { CollectionConfig, TableConfig } from "../collection";
 
 export const UserIdSchema = idSchema({ brand: "UserId", prefix: "u_" });
 export type UserId = z.infer<typeof UserIdSchema>;
@@ -35,3 +35,11 @@ export const UserCollectionConfig: CollectionConfig<User> = {
   schema: UserSchema,
   schemaVersion: 1,
 };
+
+export const UserTableConfig: TableConfig<User> = {
+  name: "users",
+  primaryKey: "_id",
+  schema: UserSchema,
+};
+
+

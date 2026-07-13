@@ -1,5 +1,5 @@
 import { AppError } from "../../runtime/errors/app-error";
-import type { User } from "../../schemas/user.schema";
+import type { User } from "../../schemas/user/user.schema";
 import { verifyPassword } from "../../utility/pass-hash";
 import type { UserService } from "../user/user.service";
 import AuthErrors from "./auth.error";

@@ -1,6 +1,7 @@
+// user
+
 import type { Collection, Document, MongoClient } from "mongodb";
 import type { ZodType } from "zod";
-import { env } from "../../configs/env";
 
 export type CollectionConfig<T extends Document> = {
   name: string;
@@ -17,11 +18,10 @@ export type CollectionCreateOption = {
 export async function createCollection<T extends Document>(
   collectionConfig: CollectionConfig<T>,
   mongoClient: MongoClient,
-  option?: CollectionCreateOption,
 ): Promise<Collection<T>> {
-  const dbName = option?.dbName ?? env.DB_NAME;
-  const database = mongoClient.db(dbName);
+  const database = mongoClient.db();
   const collection = database.collection<T>(collectionConfig.name);
   // TODO: collection.createIndex()
   return collection;
 }
+

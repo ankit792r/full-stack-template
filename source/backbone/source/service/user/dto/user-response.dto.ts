@@ -1,5 +1,5 @@
 import z from "zod";
-import { UserSchema } from "../../../schemas/user.schema";
+import { UserSchema } from "../../../schemas/user/user.schema";
 
 export const UserFullResponseDtoSchema = UserSchema.pick({
   _id: true,
