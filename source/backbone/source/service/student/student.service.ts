@@ -25,7 +25,6 @@ export class StudentService {
       ...dto,
       _id: createStudentId(),
       admissionNumber,
-      profileImageUrl: "",
     });
 
     await this.studentRepository.create(student);

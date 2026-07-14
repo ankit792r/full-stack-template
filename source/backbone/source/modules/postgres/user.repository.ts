@@ -1,7 +1,7 @@
 import type { UserRepositoryInterface } from "../../schemas/user/user.interface";
 import type { User, UserId } from "../../schemas/user/user.schema";
 import { mapRowToUser } from "./helper";
-import type { Table } from "../../schemas/collection";
+import type { Table } from "./table";
 
 export class UserRepository implements UserRepositoryInterface {
   constructor(
@@ -16,6 +16,8 @@ export class UserRepository implements UserRepositoryInterface {
   }
 
   async findByEmail(email: string): Promise<User | null> {
+    console.log(this.userTable);
+    
     const result = await this.userTable.query(
       `SELECT * FROM users WHERE email = $1`,
       [email],

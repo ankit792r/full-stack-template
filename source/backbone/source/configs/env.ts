@@ -34,7 +34,7 @@ export const env = createEnv({
       .default(["http://localhost:3000"]),
 
     DEFAULT_DB: z.enum(["mongodb", "postgres"]).default("mongodb"),
-    MONGODB_URI: z.string().default("mongodb://root:root@localhost:27017/testdb"),
+    MONGODB_URI: z.string().default("mongodb://root:root@localhost:27017"),
     POSTGRES_URI: z.string().default("postgres://root:root@localhost:5432/testdb"),
 
     DEFAULT_CACHE_IMPL: z.enum(["redis", "memory"]).default("memory"),

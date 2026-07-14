@@ -4,7 +4,7 @@ import type { CollectionConfig } from "../../modules/mongodb/collection";
 import type { TableConfig } from "../../modules/postgres/table";
 
 
-export const StudentIdSchema = idSchema({ brand: "StudentId", prefix: "u_" });
+export const StudentIdSchema = idSchema({ brand: "StudentId", prefix: "s_" });
 export type StudentId = z.infer<typeof StudentIdSchema>;
 export const createStudentId = createIdFactoryFromIdSchema(StudentIdSchema);
 
@@ -20,9 +20,9 @@ export const StudentSchema = z.object({
   dob: z.iso.date(),
   email: z.email(),
   phone: z.string(),
-  gender: StudentGenderSchema,
-  address: z.string(),
-  profileImageUrl: z.url()
+  gender: StudentGenderSchema.optional(),
+  address: z.string().optional(),
+  profileImageUrl: z.url().optional()
 })
 
 export type Student = z.infer<typeof StudentSchema>

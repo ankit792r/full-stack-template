@@ -22,7 +22,7 @@ export default async function(fastify: FastifyInstance) {
   const server =
     fastify.withTypeProvider<FastifyZodOpenApiTypeProvider>();
 
-  server.addHook("onRequest", fastify.authenticate);
+  // server.addHook("onRequest", fastify.authenticate);
 
   server.route({
     method: "POST",
@@ -30,7 +30,6 @@ export default async function(fastify: FastifyInstance) {
     schema: {
       tags: ["Students"],
       summary: "Create student",
-      security: [{ bearerAuth: [] }],
       body: StudentCreateDtoSchema,
       response: {
         200: StudentFullResponseDtoSchema,
@@ -51,7 +50,6 @@ export default async function(fastify: FastifyInstance) {
     schema: {
       tags: ["Students"],
       summary: "Get student",
-      security: [{ bearerAuth: [] }],
       params: z.object({
         id: z.string(),
       }),
@@ -76,7 +74,6 @@ export default async function(fastify: FastifyInstance) {
     schema: {
       tags: ["Students"],
       summary: "Update student",
-      security: [{ bearerAuth: [] }],
       params: z.object({
         id: z.string(),
       }),
@@ -93,6 +90,8 @@ export default async function(fastify: FastifyInstance) {
           request.body,
         );
 
+      console.log(student);
+
       return reply.send(student);
     },
   });
@@ -103,7 +102,6 @@ export default async function(fastify: FastifyInstance) {
     schema: {
       tags: ["Students"],
       summary: "Partially update student",
-      security: [{ bearerAuth: [] }],
       params: z.object({
         id: z.string(),
       }),
@@ -129,7 +127,6 @@ export default async function(fastify: FastifyInstance) {
     schema: {
       tags: ["Students"],
       summary: "Delete student",
-      security: [{ bearerAuth: [] }],
       params: z.object({
         id: z.string(),
       }),
@@ -153,7 +150,6 @@ export default async function(fastify: FastifyInstance) {
     schema: {
       tags: ["Students"],
       summary: "List students",
-      security: [{ bearerAuth: [] }],
       querystring: z.object({
         page: z.coerce.number().default(1),
         limit: z.coerce.number().default(10),
@@ -180,7 +176,6 @@ export default async function(fastify: FastifyInstance) {
     schema: {
       tags: ["Students"],
       summary: "Update student profile image",
-      security: [{ bearerAuth: [] }],
       params: z.object({
         id: z.string(),
       }),
