@@ -5,7 +5,7 @@ export const StudentFullResponseDtoSchema = StudentSchema.pick({
   _id: true,
   address: true,
   admissionNumber: true,
-  cource: true,
+  course: true,
   dob: true,
   email: true,
   gender: true,

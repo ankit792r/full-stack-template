@@ -1,3 +1,5 @@
+import type { StudentAnalyticsResponseDto } from "../../service/student/dto/student-analytics.dto";
+import type { StudentSearchDto } from "../../service/student/dto/student-search.dto";
 import type { Student, StudentId } from "./student.schema";
 
 export interface StudentRepositoryInterface {
@@ -12,4 +14,8 @@ export interface StudentRepositoryInterface {
   list(page: number, limit: number): Promise<Student[]>;
 
   getStudentById(studentId: StudentId): Promise<Student | null>
+
+  search(dto: StudentSearchDto): Promise<Student[]>;
+
+  analytics(): Promise<StudentAnalyticsResponseDto>;
 }

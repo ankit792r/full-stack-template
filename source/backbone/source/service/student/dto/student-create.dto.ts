@@ -3,7 +3,7 @@ import { StudentSchema } from "../../../schemas/student/student.schema";
 
 export const StudentCreateDtoSchema = StudentSchema.pick({
   name: true,
-  cource: true,
+  course: true,
   year: true,
   dob: true,
   email: true,

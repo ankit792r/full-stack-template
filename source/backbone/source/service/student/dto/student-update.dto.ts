@@ -4,7 +4,7 @@ import { StudentSchema } from "../../../schemas/student/student.schema";
 export const StudentUpdateDtoSchema = StudentSchema.pick({
   address: true,
   admissionNumber: true,
-  cource: true,
+  course: true,
   dob: true,
   email: true,
   gender: true,

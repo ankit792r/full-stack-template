@@ -17,6 +17,8 @@ import {
 
 import { createProfileImageId } from "../../schemas/blob-id";
 import { StudentBasicResponseDtoSchema, StudentFullResponseDtoSchema } from "../../service/student/dto/student-response.dto";
+import { StudentAnalyticsResponseDtoSchema } from "../../service/student/dto/student-analytics.dto";
+import { StudentSearchQueryDtoSchema } from "../../service/student/dto/student-search.dto";
 
 export default async function(fastify: FastifyInstance) {
   const server =
@@ -150,10 +152,7 @@ export default async function(fastify: FastifyInstance) {
     schema: {
       tags: ["Students"],
       summary: "List students",
-      querystring: z.object({
-        page: z.coerce.number().default(1),
-        limit: z.coerce.number().default(10),
-      }),
+      querystring: StudentSearchQueryDtoSchema,
       response: {
         200: z.array(StudentBasicResponseDtoSchema),
         default: ErrorResponseDtoSchema,
@@ -161,10 +160,7 @@ export default async function(fastify: FastifyInstance) {
     },
     handler: async (request, reply) => {
       const students =
-        await fastify.studentService.listStudents(
-          request.query.page,
-          request.query.limit,
-        );
+        await fastify.studentService.listStudents(request.query);
 
       return reply.send(students);
     },
@@ -219,4 +215,22 @@ export default async function(fastify: FastifyInstance) {
       return reply.send(publicUrl);
     },
   });
+
+  server.route({
+    method: "GET",
+    url: "/students/analytics",
+    schema: {
+      tags: ["Students"],
+      summary: "Student analytics",
+      response: {
+        200: StudentAnalyticsResponseDtoSchema,
+        default: ErrorResponseDtoSchema,
+      }
+    },
+    handler: async (_, reply) => {
+      const analytics =
+        await fastify.studentService.getAnalytics();
+      return reply.send(analytics);
+    },
+  })
 }

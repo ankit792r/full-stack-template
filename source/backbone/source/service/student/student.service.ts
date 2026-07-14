@@ -6,9 +6,11 @@ import {
   type Student,
   type StudentId,
 } from "../../schemas/student/student.schema";
+import type { StudentAnalyticsResponseDto } from "./dto/student-analytics.dto";
 
 import type { StudentCreateDto } from "./dto/student-create.dto";
 import { StudentBasicResponseDtoSchema, StudentFullResponseDtoSchema, type StudentBasicResponseDto, type StudentFullResponseDto } from "./dto/student-response.dto";
+import type { StudentSearchQueryDto } from "./dto/student-search.dto";
 import type { StudentUpdateDto } from "./dto/student-update.dto";
 import StudentError from "./student.error";
 
@@ -103,14 +105,17 @@ export class StudentService {
   }
 
   async listStudents(
-    page: number,
-    limit: number,
+    dto: StudentSearchQueryDto
   ): Promise<StudentBasicResponseDto[]> {
     const students =
-      await this.studentRepository.list(page, limit);
+      await this.studentRepository.search(dto);
 
-    return students.map((student) =>
-      StudentBasicResponseDtoSchema.parse(student),
+    return students.map(student =>
+      StudentBasicResponseDtoSchema.parse(student)
     );
+  }
+
+  async getAnalytics(): Promise<StudentAnalyticsResponseDto> {
+    return this.studentRepository.analytics();
   }
 }
