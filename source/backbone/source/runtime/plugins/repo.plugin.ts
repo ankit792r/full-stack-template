@@ -4,7 +4,7 @@ import type { DependencyOverrides } from "../app";
 import { UserRepository as MongoUserRepo } from "../../modules/mongodb/user.repository";
 import type { UserRepositoryInterface } from "../../schemas/user/user.interface";
 import { createCollection } from "../../modules/mongodb/collection";
-import { UserCollectionConfig, UserTableConfig, type User } from "../../schemas/user/user.schema";
+import { UserCollectionConfig, type User } from "../../schemas/user/user.schema";
 import { StudentCollectionConfig, type Student } from "../../schemas/student/student.schema";
 import type { StudentRepositoryInterface } from "../../schemas/student/student.interface";
 import { MongoStudentRepository } from "../../modules/mongodb/student.repository";

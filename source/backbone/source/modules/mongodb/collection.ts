@@ -1,5 +1,3 @@
-// user
-
 import type { Collection, Document, MongoClient } from "mongodb";
 import type { ZodType } from "zod";
 
